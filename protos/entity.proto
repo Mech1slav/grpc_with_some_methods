@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package go;
+
+option go_package = "protos/go";
+
+service EntityService {
+  rpc Create (Entity) returns (Entity) {}
+  rpc Update (Entity) returns (Entity) {}
+  rpc Delete (EntityID) returns (DeleteResponse) {}
+  rpc Get (EntityID) returns (Entity) {}
+  rpc Search (SearchRequest) returns (stream Entity) {}
+}
+
+message Entity {
+  int64 id = 1;
+  string name = 2;
+}
+
+message EntityID {
+  int64 id = 1;
+}
+
+message SearchRequest {
+  string query = 1;
+}
+
+message DeleteResponse {
+  bool success = 1;
+}
+
